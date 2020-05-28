@@ -16,16 +16,28 @@ public class GenerateData {
 
    public static String getNameFromList(){
    List<String> names = new ArrayList();
-   names.add("Maria");names.add("Bob");names.add("Bill");names.add("Karl");names.add("Lis");names.add("Kim");
+   names.add("Maria");
+   names.add("Bob");
+   names.add("Bill");
+   names.add("Karl");
+   names.add("Lis");
+   names.add("Kim");
+   names.add("Max");
+   names.add("Jon");
    String name = names.get((int)(Math.random() * names.size()));
    return name;
     }
 
-    public static String getSurnameFromList(){
-        List<String> names = new ArrayList();
-        names.add("Jobs");names.add("Kein");names.add("Li");names.add("Lom");names.add("Shin");names.add("Koner");
-        String name = names.get((int)(Math.random() * names.size()));
-        return name;
+    public static String getLastNameFromList(){
+        List<String> lastNames = new ArrayList();
+        lastNames.add("Jobs");
+        lastNames.add("Kein");
+        lastNames.add("Li");
+        lastNames.add("Lom");
+        lastNames.add("Shin");
+        lastNames.add("Koner");
+        String lastName = lastNames.get((int)(Math.random() * lastNames.size()));
+        return lastName;
     }
 }
 

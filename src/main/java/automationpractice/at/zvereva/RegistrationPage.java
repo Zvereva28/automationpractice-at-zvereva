@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class RegistrationPage extends BaseActions{
 
     //++++++++++++++++++++++++++++++++++++++YOUR PERSONAL INFORMATION
@@ -44,6 +46,9 @@ public class RegistrationPage extends BaseActions{
 
     private static final By INFORMATION_ALERT = By.cssSelector("#center_column > div");
 
+    private static final By INFORMATION_ALERT_DOWN = By.cssSelector("#account-creation_form > div.submit.clearfix > p");
+
+
     public RegistrationPage(WebDriver driver, WebDriverWait wait) {
 
         super(driver, wait);
@@ -51,6 +56,8 @@ public class RegistrationPage extends BaseActions{
 
     public void creationAccount(
             int oneOrTwo,
+            String firstName,
+            String lastName,
             String password,
             String address,
             String city,
@@ -61,15 +68,10 @@ public class RegistrationPage extends BaseActions{
         if (oneOrTwo == 1){
         click(MR_RADIO_BUTTON);}
         else click(MRS_RADIO_BUTTON);
-
-        type(GenerateData.getNameFromList(),FIRST_NAME_CUSTOMER_FIELD);
-
-        type(GenerateData.getSurnameFromList(),LAST_NAME_CUSTOMER_FIELD);
-
+        type(firstName,FIRST_NAME_CUSTOMER_FIELD);
+        type(lastName,LAST_NAME_CUSTOMER_FIELD);
         type(password, PASSWORD_FIELD);
-
         type(address, ADDRESS1_FIELD);
-
         type(city, CITY_FIELD);
         click(STATE_FIELD);
         clickElementInApt(STATE_APT,indexOfState);
@@ -81,6 +83,11 @@ public class RegistrationPage extends BaseActions{
     }
 
     public void checkAlertInformation(String str){
-            Assertions.assertTrue(driver.findElement(INFORMATION_ALERT).getText().contains(str));
+        Assertions.assertAll(
+                ()-> assertTrue(driver.findElement(INFORMATION_ALERT).getText().contains(str)),
+                ()-> assertTrue(driver.findElement(INFORMATION_ALERT_DOWN).getText().contains("Required field"))
+        );
+
+
     }
 }
