@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseUITest {
-    protected WebDriver driver;
+    public WebDriver driver;
     protected WebDriverWait wait;
     protected MainPage mainPage;
     protected SignInPage signInPage;

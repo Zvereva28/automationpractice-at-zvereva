@@ -11,6 +11,7 @@ public class GenerateData {
             emailBuilder.append((char)(97 + (int)(Math.random() * 26)));
         }
         emailBuilder.append("@gmail.com");
+        System.out.println(emailBuilder.toString());
         return emailBuilder.toString();
     }
 

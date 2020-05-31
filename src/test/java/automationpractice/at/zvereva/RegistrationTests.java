@@ -22,6 +22,7 @@ public class RegistrationTests extends BaseUITest {
         mainPage.home();
         mainPage.goToSignIn();
         signInPage.goToRegistration(7);
+
         registrationPage.creationAccount(oneOrTwo, GenerateData.getNameFromList(),GenerateData.getLastNameFromList() ,password, address, city,indexOfState,postCode, phone);
         sleep(3000);
         myAccountPage.checkMyAccountPageIsDisplayed();

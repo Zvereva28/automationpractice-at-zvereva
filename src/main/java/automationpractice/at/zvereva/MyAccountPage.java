@@ -1,5 +1,6 @@
 package automationpractice.at.zvereva;
 
+import automationpractice.at.zvereva.BaseActions;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MyAccountPage extends BaseActions{
+public class MyAccountPage extends BaseActions {
 
     private static final By HISTORY_ORDER_BUTTON = By.cssSelector(".icon-list-ol");
     private static final By MY_CREDITS_SLIPS_BUTTON = By.cssSelector(".icon-ban-circle");

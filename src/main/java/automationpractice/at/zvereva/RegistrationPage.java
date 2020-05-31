@@ -1,5 +1,6 @@
 package automationpractice.at.zvereva;
 
+import automationpractice.at.zvereva.BaseActions;
 import automationpractice.at.zvereva.data.GenerateData;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RegistrationPage extends BaseActions{
+public class RegistrationPage extends BaseActions {
 
     //++++++++++++++++++++++++++++++++++++++YOUR PERSONAL INFORMATION
     private static final By MR_RADIO_BUTTON = By.cssSelector("#id_gender1");
