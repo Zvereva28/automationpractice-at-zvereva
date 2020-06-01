@@ -8,7 +8,7 @@ public class MainPageTests extends BaseUITest{
     @Test
     public void goToSignInPageTest() {
         mainPage.home();
-        mainPage.goToSignIn();
+        header.goToSignIn();
         Assertions.assertTrue(signInPage.isSignInPageHeaderPresent());
         Assertions.assertEquals("authentication", signInPage.getSignInPageHeaderText().toLowerCase());
     }

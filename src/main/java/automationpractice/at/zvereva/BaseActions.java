@@ -6,9 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.xml.bind.Element;
+import java.util.List;
 import java.util.NoSuchElementException;
 
-public class BaseActions {
+public abstract class BaseActions {
     WebDriver driver;
     WebDriverWait wait;
 
@@ -28,13 +30,13 @@ public class BaseActions {
     public void click(By by) {
         if (isElementPresent(by)) {
         driver.findElement(by).click();}
-        else System.out.println("элемент " + by.toString() + " не найден");
+        else System.out.println("элемент " + by.toString() + " не найден ++++++++++++++++++++++++");
     }
 
     public void clickElementInApt(By by, int index) {
         if (isElementPresent(by)) {
             driver.findElements(by).get(index).click();}
-        else System.out.println("элемент " + by.toString() + " не найден");
+        else System.out.println("элемент " + by.toString() + " не найден ++++++++++++++++++");
     }
 
     public void waitABit(int sec) {
@@ -53,5 +55,10 @@ public class BaseActions {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+    public List<WebElement> findElements(By by) {
+
+            return driver.findElements(by);
+
     }
 }

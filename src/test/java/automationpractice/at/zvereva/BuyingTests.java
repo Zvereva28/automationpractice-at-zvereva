@@ -9,9 +9,9 @@ public class BuyingTests extends BaseUITest{
     //dkmfjhg@nhg.iu 123456
 
     @Test
-    public void regAuthBuying() {
+    public void regAuthBuying() throws InterruptedException {
         mainPage.home();
-        mainPage.goToSignIn();
+        header.goToSignIn();
         String email = GenerateData.generateNewRandomEmail(5);
         signInPage.goToRegistration(email);
         registrationPage.creationAccount(1,
@@ -24,11 +24,38 @@ public class BuyingTests extends BaseUITest{
                 "259-365");
         myAccountPage.checkMyAccountPageIsDisplayed();
 //выйти из аккаунта
-        mainPage.signOut();
+        header.signOut();
         mainPage.home();
-        mainPage.goToSignIn();
+        header.goToSignIn();
         signInPage.authentication(email,"123456");
         myAccountPage.checkMyAccountPageIsDisplayed();
+        header.clickButtonTopMenu(Header.СheckButton.dresses);
+        sleep(5000);
+        catalogPage.clickRandomElementCatalogForm();
+        sleep(5000);
+        goodsPage.addToCard(2);
+        sleep(5000);
+
+
+
+    }
+    @Test
+    public void authBuying() throws InterruptedException {
+        mainPage.home();
+//        header.goToSignIn();
+//        signInPage.authentication("dkmfjhg@nhg.iu","123456");
+//        myAccountPage.checkMyAccountPageIsDisplayed();
+        header.clickButtonTopMenu(Header.СheckButton.dresses);
+        sleep(2000);
+        catalogPage.clickRandomElementCatalogForm();
+        sleep(2000);
+        goodsPage.addToCard(2);
+        sleep(2000);
+        windowAddedToCart.checkWindowIsDisplayed();
+        sleep(2000);
+        windowAddedToCart.closeWindow();
+        sleep(2000);
+
 
 
     }

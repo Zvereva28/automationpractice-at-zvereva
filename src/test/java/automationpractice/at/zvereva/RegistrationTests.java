@@ -20,7 +20,7 @@ public class RegistrationTests extends BaseUITest {
             String postCode,
             String phone) throws InterruptedException {
         mainPage.home();
-        mainPage.goToSignIn();
+        header.goToSignIn();
         signInPage.goToRegistration(7);
 
         registrationPage.creationAccount(oneOrTwo, GenerateData.getNameFromList(),GenerateData.getLastNameFromList() ,password, address, city,indexOfState,postCode, phone);
@@ -50,7 +50,7 @@ public class RegistrationTests extends BaseUITest {
             String phone,
             String danger) throws InterruptedException {
         mainPage.home();
-        mainPage.goToSignIn();
+        header.goToSignIn();
         signInPage.goToRegistration(10);
         registrationPage.creationAccount(oneOrTwo,firstName,lastName, password, address, city, indexOfState, postCode, phone);
         sleep(3000);

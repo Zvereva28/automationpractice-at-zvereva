@@ -14,6 +14,10 @@ public class BaseUITest {
     protected SignInPage signInPage;
     protected RegistrationPage registrationPage;
     protected MyAccountPage myAccountPage;
+    protected Header header;
+    protected CatalogPage catalogPage;
+    protected GoodsPage goodsPage;
+    protected WindowAddedToCart windowAddedToCart;
 
     @BeforeEach
     public void init() {
@@ -25,6 +29,10 @@ public class BaseUITest {
         signInPage = new SignInPage(driver, wait);
         registrationPage = new RegistrationPage(driver, wait);
         myAccountPage = new MyAccountPage(driver,wait);
+        header = new Header(driver, wait);
+        catalogPage = new CatalogPage(driver,wait);
+        goodsPage = new GoodsPage(driver,wait);
+        windowAddedToCart = new WindowAddedToCart(driver,wait);
     }
 
     @AfterEach

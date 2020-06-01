@@ -8,8 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage extends BaseActions {
     private static final String HOMEPAGE_URL = "http://automationpractice.com/";
 
-    private static final By SIGN_IN_BTN = By.cssSelector(".login");
-    private static final By SIGN_OUT_BTN = By.cssSelector(".logout");
+
+
+
 
     public MainPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -19,9 +20,9 @@ public class MainPage extends BaseActions {
         driver.get(HOMEPAGE_URL);
     }
 
-    public void goToSignIn() {
-        click(SIGN_IN_BTN);
+    public void clickGoods(){
+
     }
 
-    public void signOut(){click(SIGN_OUT_BTN);}
+
 }
