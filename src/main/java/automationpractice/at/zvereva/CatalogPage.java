@@ -28,12 +28,13 @@ public class CatalogPage extends BaseActions{
     public void clickRandomElementCatalogForm() throws InterruptedException {
         elements = driver.findElements(PRODUCT_LIST);
         int n = (int)(Math.random() * elements.size());
+        System.out.println("номер  " + n);
         Actions actions = new Actions(driver);
         Dimension size = elements.get(n).getSize();
-        actions.moveToElement(elements.get(n), size.getWidth()%2, (size.getHeight()%2 -5)).click().build().perform();
+            System.out.println("ширина   "+size.getWidth());
+        System.out.println("высота     "+size.getHeight());
 
-        sleep(2000);
-
+        actions.moveToElement(elements.get(n), size.getWidth()%2, (size.getHeight()%2+50)).doubleClick().build().perform();
 
         }
 

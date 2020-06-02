@@ -1,6 +1,6 @@
 package automationpractice.at.zvereva.data;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GenerateData {
@@ -16,27 +16,14 @@ public class GenerateData {
     }
 
    public static String getNameFromList(){
-   List<String> names = new ArrayList();
-   names.add("Maria");
-   names.add("Bob");
-   names.add("Bill");
-   names.add("Karl");
-   names.add("Lis");
-   names.add("Kim");
-   names.add("Max");
-   names.add("Jon");
+   List<String> names = new ArrayList<>(Arrays.asList("Maria","Bob","Bill","Karl","Lis","Kim","Max","Jon"));
    String name = names.get((int)(Math.random() * names.size()));
    return name;
     }
 
     public static String getLastNameFromList(){
-        List<String> lastNames = new ArrayList();
-        lastNames.add("Jobs");
-        lastNames.add("Kein");
-        lastNames.add("Li");
-        lastNames.add("Lom");
-        lastNames.add("Shin");
-        lastNames.add("Koner");
+        List<String> lastNames = new ArrayList(Arrays.asList("Jobs","Kein","Li","Lom","Shin","Koner"));
+
         String lastName = lastNames.get((int)(Math.random() * lastNames.size()));
         return lastName;
     }

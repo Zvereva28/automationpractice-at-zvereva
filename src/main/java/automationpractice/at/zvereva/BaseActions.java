@@ -27,10 +27,14 @@ public abstract class BaseActions {
         else System.out.println("элемент " + by.toString() + " не найден");
     }
 
+//    public void click(By by) {
+//        if (isElementPresent(by)) {
+//        driver.findElement(by).click();}
+//        else System.out.println("элемент " + by.toString() + " не найден ++++++++++++++++++++++++");
+//    }
     public void click(By by) {
-        if (isElementPresent(by)) {
-        driver.findElement(by).click();}
-        else System.out.println("элемент " + by.toString() + " не найден ++++++++++++++++++++++++");
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(by))).click();
     }
 
     public void clickElementInApt(By by, int index) {
@@ -39,7 +43,7 @@ public abstract class BaseActions {
         else System.out.println("элемент " + by.toString() + " не найден ++++++++++++++++++");
     }
 
-    public void waitABit(int sec) {
+    public static void waitABit(int sec) {
         try {
             Thread.sleep(sec);
         } catch (InterruptedException e) {

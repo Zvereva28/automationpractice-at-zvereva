@@ -48,12 +48,36 @@ public class BuyingTests extends BaseUITest{
         header.clickButtonTopMenu(Header.СheckButton.dresses);
         sleep(2000);
         catalogPage.clickRandomElementCatalogForm();
-        sleep(2000);
+        //sleep(2000);
         goodsPage.addToCard(2);
-        sleep(2000);
+
         windowAddedToCart.checkWindowIsDisplayed();
-        sleep(2000);
+       // sleep(2000);
         windowAddedToCart.closeWindow();
+        sleep(2000);
+        header.goToCard();
+
+
+
+    }
+    @Test
+    public void authBuying2() throws InterruptedException {
+        mainPage.home();
+        sleep(2000);
+//        header.goToSignIn();
+//        signInPage.authentication("dkmfjhg@nhg.iu","123456");
+//        myAccountPage.checkMyAccountPageIsDisplayed();
+        header.clickButtonTopMenu(Header.СheckButton.women);
+        sleep(2000);
+        catalogPage.clickRandomElementCatalogForm();
+        //sleep(2000);
+        goodsPage.addToCard(2);
+
+        windowAddedToCart.checkWindowIsDisplayed();
+        // sleep(2000);
+        windowAddedToCart.closeWindow();
+        sleep(2000);
+        header.goToCard();
         sleep(2000);
 
 

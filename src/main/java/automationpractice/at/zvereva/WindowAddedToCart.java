@@ -14,11 +14,13 @@ public class WindowAddedToCart extends BaseActions{
 
     private static final By WINDOW_ADDED_TO_CART = By.cssSelector("#layer_cart > div.clearfix");
     private static final By TEXT_INFORMATION = By.cssSelector("div.layer_cart_product.col-xs-12.col-md-6 > h2");
+    private static final By CLOSE_BUTTON = By.cssSelector("#layer_cart > div.clearfix > div.layer_cart_product.col-xs-12.col-md-6 > span");
     public WindowAddedToCart(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
 
     public void checkWindowIsDisplayed() {
+        waitABit(3000);
         Assertions.assertAll(
                 ()-> assertTrue(isElementPresent(WINDOW_ADDED_TO_CART), "Не отобразилось окно добавления товара в корзину"),
                 ()-> assertEquals(driver.findElement(WINDOW_ADDED_TO_CART).findElement(TEXT_INFORMATION).getText(),"Product successfully added to your shopping cart", "Сообщение отобразилось не корректно")
@@ -26,7 +28,7 @@ public class WindowAddedToCart extends BaseActions{
     }
 
     public void closeWindow(){
-
+        click(CLOSE_BUTTON);
     }
 
 

@@ -1,8 +1,10 @@
 package automationpractice.at.zvereva;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -13,6 +15,7 @@ public class Header extends BaseActions{
     private static final By SIGN_OUT_BTN = By.cssSelector(".logout");
 
     private static final By BLOCK_TOP_MENU = By.cssSelector("#block_top_menu > ul > li");
+    private static final By CARD_BUTTON = By.cssSelector("#header > div:nth-child(3) > div > div > div:nth-child(3) > div > a");
 
 
 
@@ -25,6 +28,17 @@ public class Header extends BaseActions{
     }
 
     public void signOut(){click(SIGN_OUT_BTN);}
+
+    public void goToCard(){
+        WebElement element = driver.findElement(CARD_BUTTON);
+        Actions actions = new Actions(driver);
+        Dimension size = element.getSize();
+        System.out.println("CARD ширина   "+size.getWidth());
+        System.out.println("CARD высота     "+size.getHeight());
+
+        actions.moveToElement(element, size.getWidth()%2, (size.getHeight()-30)).click().build().perform();
+
+    }
 
     public void clickButtonTopMenu(СheckButton nameButton) {
         List<WebElement> elements = findElements(BLOCK_TOP_MENU);
@@ -60,60 +74,6 @@ public class Header extends BaseActions{
         }
         }
 
-}
-//
-//    @Step("Выбор пункта {nameButton} в фильтре checkBox")
-//    public CoursesPage checkBox(СheckBoxButton nameButton) {
-//        switch (nameButton) {
-//            case checkBoxFree: {
-//                checkBoxFree.click();
-//                break;
-//            }
-//            case checkBoxForStart: {
-//                checkBoxForStart.click();
-//                break;
-//            }
-//            case checkBoxWebDevel: {
-//                checkBoxWebDevel.click();
-//                break;
-//            }
-//            case checkBoxProgramDevel: {
-//                checkBoxProgramDevel.click();
-//                break;
-//            }
-//            case checkBoxWebDesign: {
-//                checkBoxWebDesign.click();
-//                break;
-//            }
-//            case checkBoxMobileDevel: {
-//                checkBoxMobileDevel.click();
-//                break;
-//              }
-//            }
 
-//public enum СheckBoxButton{
-//    checkBoxFree("Бесплатные"),
-//    checkBoxForStart("Для начинающих"),
-//    checkBoxWebDevel("Веб-разработка"),
-//    checkBoxProgramDevel("Разработка программ"),
-//    checkBoxWebDesign("Веб-дизайн"),
-//    checkBoxMobileDevel("Мобильная разработка"),
-//    checkBoxGameDevel("Разработка игр"),
-//    checkBoxInformationSecurity("Информационная безопасность"),
-//    checkBoxDataScience("Data Science"),
-//    checkBoxTesting("Тестирование"),
-//    checkBoxInternetMarketing("Интернет маркетинг"),
-//    checkBoxSystemAdministration("Системное администрирование"),
-//    checkBoxGeekClub("GeekClub"),
-//    checkBoxCyberSport("Киберспорт");
-//
-//    private String nameButton;
-//
-//    СheckBoxButton(String nameButton) {
-//        this.nameButton = nameButton;
-//    }
-//
-//    public String getText() {
-//        return nameButton;
-//    }
-//}
+
+}
