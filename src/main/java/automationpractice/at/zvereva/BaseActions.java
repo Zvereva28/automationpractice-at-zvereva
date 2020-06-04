@@ -27,11 +27,6 @@ public abstract class BaseActions {
         else System.out.println("элемент " + by.toString() + " не найден");
     }
 
-//    public void click(By by) {
-//        if (isElementPresent(by)) {
-//        driver.findElement(by).click();}
-//        else System.out.println("элемент " + by.toString() + " не найден ++++++++++++++++++++++++");
-//    }
     public void click(By by) {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(by))).click();
@@ -61,8 +56,6 @@ public abstract class BaseActions {
         }
     }
     public List<WebElement> findElements(By by) {
-
             return driver.findElements(by);
-
     }
 }

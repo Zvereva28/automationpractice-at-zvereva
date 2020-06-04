@@ -1,5 +1,6 @@
 package automationpractice.at.zvereva;
 import automationpractice.at.zvereva.data.GenerateData;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,6 +10,7 @@ import java.util.stream.Stream;
 import static java.lang.Thread.sleep;
 
 public class RegistrationTests extends BaseUITest {
+    @DisplayName("Создание нового аккаунта, все данные валидные (позитив)")
     @ParameterizedTest
     @MethodSource("dataForTest1")
     public void createNewAccountPositiveTest(
@@ -32,10 +34,10 @@ public class RegistrationTests extends BaseUITest {
         return Stream.of(
                 Arguments.of(1, "trre123", "street 25", "NewYork", 25, "25002", "25"),
                 Arguments.of(2, "nhyt3698", "street 15", "Volgograd", 15, "36523", "36-96-36"),
-                Arguments.of(1, "gjnvd3", "street 5", "Moscow", 16, "365555", "369-96-36")
+                Arguments.of(1, "gjnvd3", "street 5", "Moscow", 16, "36555", "369-96-36")
         );
     }
-
+    @DisplayName("Создание нового аккаунта, данные не валидные (негатив) проверка информационных сообщений")
     @ParameterizedTest
     @MethodSource("dataForTest2")
     public void createNewAccountNegativeTest1(

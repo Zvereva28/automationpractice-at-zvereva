@@ -1,11 +1,8 @@
 package automationpractice.at.zvereva;
-
-import automationpractice.at.zvereva.BaseActions;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyAccountPage extends BaseActions {
@@ -15,8 +12,6 @@ public class MyAccountPage extends BaseActions {
     private static final By MY_ADDRESS_BUTTON = By.cssSelector(".icon-building");
     private static final By MY_PERSONAL_INFORMATION_BUTTON = By.cssSelector(".icon-user");
     private static final By MY_WISH_LISTS_BUTTON = By.cssSelector(".icon-heart");
-
-
 
     public MyAccountPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);

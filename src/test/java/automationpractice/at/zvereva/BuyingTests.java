@@ -1,15 +1,15 @@
 package automationpractice.at.zvereva;
-
 import automationpractice.at.zvereva.data.GenerateData;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static java.lang.Thread.sleep;
+//dkmfjhg@nhg.iu 123456
 
 public class BuyingTests extends BaseUITest{
-    //dkmfjhg@nhg.iu 123456
 
+    @DisplayName("Регистрация + аутентификация + покупка")
     @Test
-    public void regAuthBuying() throws InterruptedException {
+    public void regAuthBuying() {
         mainPage.home();
         header.goToSignIn();
         String email = GenerateData.generateNewRandomEmail(5);
@@ -29,57 +29,52 @@ public class BuyingTests extends BaseUITest{
         header.goToSignIn();
         signInPage.authentication(email,"123456");
         myAccountPage.checkMyAccountPageIsDisplayed();
-        header.clickButtonTopMenu(Header.СheckButton.dresses);
-        sleep(5000);
+        header.clickButtonTopMenu(Header.СheckButton.women);
         catalogPage.clickRandomElementCatalogForm();
-        sleep(5000);
-        goodsPage.addToCard(2);
-        sleep(5000);
-
-
-
-    }
-    @Test
-    public void authBuying() throws InterruptedException {
-        mainPage.home();
-//        header.goToSignIn();
-//        signInPage.authentication("dkmfjhg@nhg.iu","123456");
-//        myAccountPage.checkMyAccountPageIsDisplayed();
-        header.clickButtonTopMenu(Header.СheckButton.dresses);
-        sleep(2000);
-        catalogPage.clickRandomElementCatalogForm();
-        //sleep(2000);
-        goodsPage.addToCard(2);
-
+        goodsPage.addToCard(3);
         windowAddedToCart.checkWindowIsDisplayed();
-       // sleep(2000);
         windowAddedToCart.closeWindow();
-        sleep(2000);
         header.goToCard();
-
+        oderPage.oderConfirmationAlreadyAuth();
+        Assertions.assertTrue(header.checkHeaderInform("order confirmation"),
+                "ожидаемое сообщение в хэдере \"order confirmation\"");
 
 
     }
+
+    @DisplayName("Аутентификация + покупка")
+    @Test
+    public void authBuying() {
+        mainPage.home();
+        header.goToSignIn();
+        signInPage.authentication("dkmfjhg@nhg.iu","123456");
+        myAccountPage.checkMyAccountPageIsDisplayed();
+        header.clickButtonTopMenu(Header.СheckButton.dresses);
+        catalogPage.clickRandomElementCatalogForm();
+        goodsPage.addToCard(2);
+        windowAddedToCart.checkWindowIsDisplayed();
+        windowAddedToCart.closeWindow();
+        header.goToCard();
+        oderPage.oderConfirmationAlreadyAuth();
+        Assertions.assertTrue(header.checkHeaderInform("order confirmation"),
+                "ожидаемое сообщение в хэдере \"order confirmation\"");
+    }
+
+    @DisplayName("Покупка + аутентификация")
     @Test
     public void authBuying2() throws InterruptedException {
         mainPage.home();
-        sleep(2000);
-//        header.goToSignIn();
-//        signInPage.authentication("dkmfjhg@nhg.iu","123456");
-//        myAccountPage.checkMyAccountPageIsDisplayed();
         header.clickButtonTopMenu(Header.СheckButton.women);
-        sleep(2000);
         catalogPage.clickRandomElementCatalogForm();
-        //sleep(2000);
         goodsPage.addToCard(2);
-
         windowAddedToCart.checkWindowIsDisplayed();
-        // sleep(2000);
         windowAddedToCart.closeWindow();
-        sleep(2000);
         header.goToCard();
-        sleep(2000);
-
+        oderPage.oderConfirmationWithoutAuth1();
+        signInPage.authentication("dkmfjhg@nhg.iu", "123456");
+        oderPage.oderConfirmationWithoutAuth2();
+        Assertions.assertTrue(header.checkHeaderInform("order confirmation"),
+                "ожидаемое сообщение в хэдере \"order confirmation\"");
 
 
     }

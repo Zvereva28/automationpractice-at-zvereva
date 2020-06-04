@@ -11,13 +11,15 @@ import java.util.List;
 
 public class Header extends BaseActions{
 
+    private static final By INFORMATION_OF_PAGE = By.cssSelector(".page-heading");
+
     private static final By SIGN_IN_BTN = By.cssSelector(".login");
     private static final By SIGN_OUT_BTN = By.cssSelector(".logout");
 
     private static final By BLOCK_TOP_MENU = By.cssSelector("#block_top_menu > ul > li");
     private static final By CARD_BUTTON = By.cssSelector("#header > div:nth-child(3) > div > div > div:nth-child(3) > div > a");
-
-
+//
+    //private static final By HEADER_INFORM_BUTTON = By.cssSelector("#center_column > h1");
 
     public Header(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -30,14 +32,17 @@ public class Header extends BaseActions{
     public void signOut(){click(SIGN_OUT_BTN);}
 
     public void goToCard(){
-        WebElement element = driver.findElement(CARD_BUTTON);
-        Actions actions = new Actions(driver);
-        Dimension size = element.getSize();
-        System.out.println("CARD ширина   "+size.getWidth());
-        System.out.println("CARD высота     "+size.getHeight());
+//        WebElement element = driver.findElement(CARD_BUTTON);
+//        Actions actions = new Actions(driver);
+//        Dimension size = element.getSize();
+//        System.out.println("height  "+size.getHeight());
+//        actions.moveToElement(element, size.getWidth()%2, (size.getHeight()-20)).click().build().perform();
+        click(CARD_BUTTON);
+    }
 
-        actions.moveToElement(element, size.getWidth()%2, (size.getHeight()-30)).click().build().perform();
-
+    public boolean checkHeaderInform(String inform){
+        waitABit(2000);
+       return driver.findElement(INFORMATION_OF_PAGE).getText().toLowerCase().contains(inform);
     }
 
     public void clickButtonTopMenu(СheckButton nameButton) {

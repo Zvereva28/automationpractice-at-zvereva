@@ -20,6 +20,7 @@ public class BaseUITest {
     protected CatalogPage catalogPage;
     protected GoodsPage goodsPage;
     protected WindowAddedToCart windowAddedToCart;
+    protected OderPage oderPage;
 
     @BeforeEach
     public void init() {
@@ -39,6 +40,7 @@ public class BaseUITest {
         catalogPage = new CatalogPage(driver,wait);
         goodsPage = new GoodsPage(driver,wait);
         windowAddedToCart = new WindowAddedToCart(driver,wait);
+        oderPage = new OderPage(driver,wait);
     }
 
     @AfterEach

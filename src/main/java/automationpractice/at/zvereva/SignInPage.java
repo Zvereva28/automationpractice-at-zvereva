@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SignInPage extends BaseActions {
     //CREATE AN ACCOUNT
-    private static final By SIGN_IN_PAGE_HEADER = By.cssSelector(".page-heading");
+
     private static final By EMAIL_REGISTRATION = By.cssSelector("#email_create");
     private static final By GO_TO_REGISTRATION_BTN = By.cssSelector("#SubmitCreate");
     //ALREADY REGISTERED?
@@ -24,13 +24,6 @@ public class SignInPage extends BaseActions {
         super(driver, wait);
     }
 
-    public boolean isSignInPageHeaderPresent() {
-        return isElementPresent(SIGN_IN_PAGE_HEADER);
-    }
-
-    public String getSignInPageHeaderText() {
-        return driver.findElement(SIGN_IN_PAGE_HEADER).getText();
-    }
 
     public void goToRegistration(int emailNameLength) {
         type(GenerateData.generateNewRandomEmail(emailNameLength), EMAIL_REGISTRATION);
@@ -45,8 +38,8 @@ public class SignInPage extends BaseActions {
         type(password, PASSWORD_ALREADY_REGISTERED_FIELD);
         click(SIGN_IN_BUTTON);
     }
-    public void checkDanderAuthentication(String message){
-        Assertions.assertTrue(driver.findElement(ALERT_DANGER).getText().contains(message));
+    public String  checkDanderAuthentication(){
+        return driver.findElement(ALERT_DANGER).getText().toLowerCase();
 
     }
 }

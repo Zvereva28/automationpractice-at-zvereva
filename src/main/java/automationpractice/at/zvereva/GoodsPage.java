@@ -8,14 +8,11 @@ public class GoodsPage extends BaseActions{
 
     private static final By ADD_TI_CARD_BUTTON = By.cssSelector("#add_to_cart > button");
     private static final By QUANTITY_FIELD = By.cssSelector("#quantity_wanted");
-    String number = "0";
-   //#center_column > ul > li:nth-child(5) > div > div.right-block > h5 > a
-
-
 
     public GoodsPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
+
 
     public void addToCard(int quantity){
         type(String.valueOf(quantity),QUANTITY_FIELD);
