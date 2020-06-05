@@ -75,9 +75,10 @@ public class RegistrationPage extends BaseActions {
         type(address, ADDRESS1_FIELD);
         type(city, CITY_FIELD);
         //click(STATE_FIELD);
-        clickElementInApt(STATE_APT,indexOfState);
+        select(indexOfState, STATE_FIELD);
+        //waitABit(10000);
         //click(COUNTRY_FIELD);
-        click(COUNTRY_USA);
+        //click(COUNTRY_USA);
         type(postCode, POST_CODE_FIELD);
         type(phone,FIELD_HOME_PHONE);
         click(REGISTER_BUTTON);

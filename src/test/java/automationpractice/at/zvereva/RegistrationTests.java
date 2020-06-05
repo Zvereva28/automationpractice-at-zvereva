@@ -1,5 +1,6 @@
 package automationpractice.at.zvereva;
 import automationpractice.at.zvereva.data.GenerateData;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -27,7 +28,7 @@ public class RegistrationTests extends BaseUITest {
 
         registrationPage.creationAccount(oneOrTwo, GenerateData.getNameFromList(),GenerateData.getLastNameFromList() ,password, address, city,indexOfState,postCode, phone);
         sleep(3000);
-        myAccountPage.checkMyAccountPageIsDisplayed();
+        Assertions.assertTrue(myAccountPage.checkMyAccountPageIsDisplayed(), "не все элементы MyAccount отобразились");
 
     }
     public static Stream<Arguments> dataForTest1(){

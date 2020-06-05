@@ -1,6 +1,5 @@
 package automationpractice.at.zvereva;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,7 +8,10 @@ import java.util.List;
 
 public class CatalogPage extends BaseActions{
     List<WebElement> elements;
+    WebElement element;
+    //ul[class=\"product_list grid row\"] > li
     private static final By PRODUCT_LIST = By.cssSelector("#center_column > ul > li");
+    private static final By PRODUCT_NAME = By.cssSelector("a.product-name");
     private static final By FIRST_GOODS_BUTTON = By.cssSelector("#center_column > ul > li:nth-child(1) > div > div.right-block > h5 > a");
 
     public CatalogPage(WebDriver driver, WebDriverWait wait) {
@@ -17,19 +19,17 @@ public class CatalogPage extends BaseActions{
     }
 
     public void clickRandomElementCatalogForm() {
-        elements = driver.findElements(PRODUCT_LIST);
+        waitABit(5000);
+        elements = findElements(PRODUCT_LIST);
         int n = (int)(Math.random() * elements.size());
-//        System.out.println("номер  " + n);
-        Actions actions = new Actions(driver);
-        Dimension size = elements.get(n).getSize();
-//            System.out.println("ширина   "+size.getWidth());
-//        System.out.println("высота     "+size.getHeight());
-        actions.moveToElement(elements.get(n), size.getWidth()%2, (size.getHeight()%2+50)).doubleClick().build().perform();
-
+        System.out.println(n + "++++++++++++++++++");
+        scrollPage600();
+        new Actions(driver).moveToElement(elements.get(1), 50, 50).click().perform();
         }
 
         public void clickFirstElementCatalogForm(){
-            click(FIRST_GOODS_BUTTON);
+        element = driver.findElement(FIRST_GOODS_BUTTON);
+        new Actions(driver).moveToElement(element, 100, 100).click().perform();
         }
 
 }

@@ -14,7 +14,7 @@ public class AuthenticationTests extends BaseUITest{
             mainPage.home();
             header.goToSignIn();
             signInPage.authentication("vskstji@gmail.com","trre123");
-            myAccountPage.checkMyAccountPageIsDisplayed();
+            Assertions.assertTrue(myAccountPage.checkMyAccountPageIsDisplayed(), "не все элементы MyAccount отобразились");
         }
     @DisplayName("Аутентификация с не валидными данными (негатив)")
     @ParameterizedTest

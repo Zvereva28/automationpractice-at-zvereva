@@ -16,14 +16,16 @@ public class MyAccountPage extends BaseActions {
     public MyAccountPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
-    public void checkMyAccountPageIsDisplayed() {
-        Assertions.assertAll(
-                ()-> assertTrue(isElementPresent(HISTORY_ORDER_BUTTON), "Не отобразилась кнопка HistoryOrder"),
-                ()-> assertTrue(isElementPresent(MY_CREDITS_SLIPS_BUTTON), "Не отобразилась кнопка MyCreditSlips"),
-                ()-> assertTrue(isElementPresent(MY_ADDRESS_BUTTON), "Не отобразилась кнопка MyAddresses"),
-                ()-> assertTrue(isElementPresent(MY_PERSONAL_INFORMATION_BUTTON),"Не отобразилась кнопка MyPersonalInformation"),
-                ()-> assertTrue(isElementPresent(MY_WISH_LISTS_BUTTON), "Не отобразилась кнопка MyWishLists")
-
-        );
+    public Boolean checkMyAccountPageIsDisplayed() {
+        if (isElementPresent(HISTORY_ORDER_BUTTON) &
+                isElementPresent(MY_CREDITS_SLIPS_BUTTON) &
+                isElementPresent(MY_ADDRESS_BUTTON) &
+                isElementPresent(MY_PERSONAL_INFORMATION_BUTTON) &
+                isElementPresent(MY_WISH_LISTS_BUTTON)) {
+            return true;
+        }
+        return false;
     }
+
+
 }

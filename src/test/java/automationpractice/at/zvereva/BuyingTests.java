@@ -22,20 +22,20 @@ public class BuyingTests extends BaseUITest{
                 36,
                 "00123",
                 "259-365");
-        myAccountPage.checkMyAccountPageIsDisplayed();
+        Assertions.assertTrue(myAccountPage.checkMyAccountPageIsDisplayed(), "не все элементы MyAccount отобразились");
 //выйти из аккаунта
         header.signOut();
         mainPage.home();
         header.goToSignIn();
         signInPage.authentication(email,"123456");
-        myAccountPage.checkMyAccountPageIsDisplayed();
+        Assertions.assertTrue(myAccountPage.checkMyAccountPageIsDisplayed(), "не все элементы MyAccount отобразились");
         header.clickButtonTopMenu(Header.СheckButton.women);
         catalogPage.clickRandomElementCatalogForm();
         goodsPage.addToCard(3);
         windowAddedToCart.checkWindowIsDisplayed();
         windowAddedToCart.closeWindow();
         header.goToCard();
-        oderPage.oderConfirmationAlreadyAuth();
+        oderPage.oderConfirmationAlreadyAuth(2);
         Assertions.assertTrue(header.checkHeaderInform("order confirmation"),
                 "ожидаемое сообщение в хэдере \"order confirmation\"");
 
@@ -48,14 +48,14 @@ public class BuyingTests extends BaseUITest{
         mainPage.home();
         header.goToSignIn();
         signInPage.authentication("dkmfjhg@nhg.iu","123456");
-        myAccountPage.checkMyAccountPageIsDisplayed();
+        Assertions.assertTrue(myAccountPage.checkMyAccountPageIsDisplayed(), "не все элементы MyAccount отобразились");
         header.clickButtonTopMenu(Header.СheckButton.dresses);
         catalogPage.clickRandomElementCatalogForm();
         goodsPage.addToCard(2);
         windowAddedToCart.checkWindowIsDisplayed();
         windowAddedToCart.closeWindow();
         header.goToCard();
-        oderPage.oderConfirmationAlreadyAuth();
+        oderPage.oderConfirmationAlreadyAuth(1);
         Assertions.assertTrue(header.checkHeaderInform("order confirmation"),
                 "ожидаемое сообщение в хэдере \"order confirmation\"");
     }
@@ -70,9 +70,13 @@ public class BuyingTests extends BaseUITest{
         windowAddedToCart.checkWindowIsDisplayed();
         windowAddedToCart.closeWindow();
         header.goToCard();
-        oderPage.oderConfirmationWithoutAuth1();
+        oderPage.proceedCheckoutSummary();
         signInPage.authentication("dkmfjhg@nhg.iu", "123456");
-        oderPage.oderConfirmationWithoutAuth2();
+        oderPage.proceedCheckoutAddress();
+        oderPage.checkboxIAgree();
+        oderPage.proceedCheckoutShipping();
+        oderPage.checkPayment(2);
+        oderPage.confirmMyOder();
         Assertions.assertTrue(header.checkHeaderInform("order confirmation"),
                 "ожидаемое сообщение в хэдере \"order confirmation\"");
 
