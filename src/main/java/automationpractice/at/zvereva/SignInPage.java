@@ -1,12 +1,10 @@
 package automationpractice.at.zvereva;
-import automationpractice.at.zvereva.BaseActions;
+
 import automationpractice.at.zvereva.data.GenerateData;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SignInPage extends BaseActions {
     //CREATE AN ACCOUNT
@@ -29,16 +27,19 @@ public class SignInPage extends BaseActions {
         type(GenerateData.generateNewRandomEmail(emailNameLength), EMAIL_REGISTRATION);
         click(GO_TO_REGISTRATION_BTN);
     }
+
     public void goToRegistration(String email) {
         type(email, EMAIL_REGISTRATION);
         click(GO_TO_REGISTRATION_BTN);
     }
-    public void authentication(String email, String password){
+
+    public void authentication(String email, String password) {
         type(email, EMAIL_ALREADY_REGISTERED_FIELD);
         type(password, PASSWORD_ALREADY_REGISTERED_FIELD);
         click(SIGN_IN_BUTTON);
     }
-    public String  checkDanderAuthentication(){
+
+    public String checkDanderAuthentication() {
         return driver.findElement(ALERT_DANGER).getText().toLowerCase();
 
     }

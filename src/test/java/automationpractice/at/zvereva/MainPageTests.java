@@ -1,16 +1,14 @@
 package automationpractice.at.zvereva;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-public class MainPageTests extends BaseUITest{
-    @DisplayName("Загрузка страницы регистрации")
-    @Test
+public class MainPageTests extends BaseUITest {
+
+    @Test(testName = "Загрузка страницы регистрации")
     public void goToSignInPageTest() {
         mainPage.home();
         header.goToSignIn();
-
-        Assertions.assertTrue(header.checkHeaderInform("authentication"), "проверка заголовка не  прошла");
+        Assert.assertTrue(header.checkHeaderInform("authentication"), "проверка заголовка не  прошла");
     }
 }

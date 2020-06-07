@@ -1,13 +1,8 @@
 package automationpractice.at.zvereva;
 
-import automationpractice.at.zvereva.BaseActions;
-import automationpractice.at.zvereva.data.GenerateData;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegistrationPage extends BaseActions {
 
@@ -66,11 +61,11 @@ public class RegistrationPage extends BaseActions {
             String postCode,
             String phone) {
         //пока так
-        if (oneOrTwo == 1){
-        click(MR_RADIO_BUTTON);}
-        else click(MRS_RADIO_BUTTON);
-        type(firstName,FIRST_NAME_CUSTOMER_FIELD);
-        type(lastName,LAST_NAME_CUSTOMER_FIELD);
+        if (oneOrTwo == 1) {
+            click(MR_RADIO_BUTTON);
+        } else click(MRS_RADIO_BUTTON);
+        type(firstName, FIRST_NAME_CUSTOMER_FIELD);
+        type(lastName, LAST_NAME_CUSTOMER_FIELD);
         type(password, PASSWORD_FIELD);
         type(address, ADDRESS1_FIELD);
         type(city, CITY_FIELD);
@@ -80,16 +75,16 @@ public class RegistrationPage extends BaseActions {
         //click(COUNTRY_FIELD);
         //click(COUNTRY_USA);
         type(postCode, POST_CODE_FIELD);
-        type(phone,FIELD_HOME_PHONE);
+        type(phone, FIELD_HOME_PHONE);
         click(REGISTER_BUTTON);
     }
 
-    public void checkAlertInformation(String str){
-        Assertions.assertAll(
-                ()-> assertTrue(driver.findElement(INFORMATION_ALERT).getText().contains(str)),
-                ()-> assertTrue(driver.findElement(INFORMATION_ALERT_DOWN).getText().contains("Required field"))
-        );
-
-
+    public boolean checkAlertInformation(String str) {
+        if ((driver.findElement(INFORMATION_ALERT).getText().contains(str)) &
+                driver.findElement(INFORMATION_ALERT_DOWN).getText().
+                        contains("Required field")) {
+            return true;
+        }
+        return false;
     }
 }

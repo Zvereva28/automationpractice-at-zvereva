@@ -1,12 +1,11 @@
 package automationpractice.at.zvereva;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +22,7 @@ public class BaseUITest {
     protected WindowAddedToCart windowAddedToCart;
     protected OderPage oderPage;
 
-    @BeforeEach
+    @BeforeSuite
     public void init() {
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
@@ -36,15 +35,15 @@ public class BaseUITest {
         mainPage = new MainPage(driver, wait);
         signInPage = new SignInPage(driver, wait);
         registrationPage = new RegistrationPage(driver, wait);
-        myAccountPage = new MyAccountPage(driver,wait);
+        myAccountPage = new MyAccountPage(driver, wait);
         header = new Header(driver, wait);
-        catalogPage = new CatalogPage(driver,wait);
-        goodsPage = new GoodsPage(driver,wait);
-        windowAddedToCart = new WindowAddedToCart(driver,wait);
-        oderPage = new OderPage(driver,wait);
+        catalogPage = new CatalogPage(driver, wait);
+        goodsPage = new GoodsPage(driver, wait);
+        windowAddedToCart = new WindowAddedToCart(driver, wait);
+        oderPage = new OderPage(driver, wait);
     }
 
-    @AfterEach
+    @AfterSuite
     public void shutdown() {
         driver.quit();
     }
