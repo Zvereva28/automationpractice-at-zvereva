@@ -9,6 +9,6 @@ public class MainPageTests extends BaseUITest {
     public void goToSignInPageTest() {
         mainPage.home();
         header.goToSignIn();
-        Assert.assertTrue(header.checkHeaderInform("authentication"), "проверка заголовка не  прошла");
+        Assert.assertTrue(header.checkHeaderInform(signInPage.HEADER_PAGE), "проверка заголовка не  прошла");
     }
 }

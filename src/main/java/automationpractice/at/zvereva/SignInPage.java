@@ -17,6 +17,12 @@ public class SignInPage extends BaseActions {
     private static final By SIGN_IN_BUTTON = By.cssSelector("#SubmitLogin");
     // Предупреждения об ошибках
     private static final By ALERT_DANGER = By.cssSelector("#center_column > div.alert.alert-danger");
+    public static final String INVALID_EMAIL_ALERT = "Invalid email address.";
+    static final String EMAIL_ALREADY_BEEN_ALERT_ = "An account using this email address has already been registered. Please enter a valid password or request a new one.";
+    static final String PASSWORD_REQUIRED_ALERT = "Password is required.";
+    public static final String INVALID_PASSWORD_ALERT = "Invalid password.";
+    public static final String AUTHENTICATION_FAILED_ALERT = "Authentication failed.";
+    public static final String HEADER_PAGE = "authentication";
 
     public SignInPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);

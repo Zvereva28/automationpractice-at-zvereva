@@ -1,5 +1,4 @@
 package automationpractice.at.zvereva;
-
 import automationpractice.at.zvereva.data.GenerateData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -35,15 +34,15 @@ public class BuyingTests extends BaseUITest {
         windowAddedToCart.closeWindow();
         header.goToCard();
         oderPage.oderConfirmationAlreadyAuth(2);
-        Assert.assertTrue(header.checkHeaderInform("order confirmation"),
-                "ожидаемое сообщение в хэдере \"order confirmation\"");
+        Assert.assertTrue(header.checkHeaderInform(oderPage.HI_ODER_CONFIRM),
+                "ожидаемое сообщение в хэдере " + oderPage.HI_ODER_CONFIRM);
     }
 
     @Test(testName = "Аутентификация + покупка")
     public void authBuying() {
         mainPage.home();
         header.goToSignIn();
-        signInPage.authentication("dkmfjhg@nhg.iu", "123456");
+        signInPage.authentication(GenerateData.AUTH_POSITIVE1[0].toString(), GenerateData.AUTH_POSITIVE1[1].toString());
         Assert.assertTrue(myAccountPage.checkMyAccountPageIsDisplayed(), "не все элементы MyAccount отобразились");
         header.clickButtonTopMenu(Header.СheckButton.dresses);
         catalogPage.clickRandomElementCatalogForm();
@@ -52,8 +51,8 @@ public class BuyingTests extends BaseUITest {
         windowAddedToCart.closeWindow();
         header.goToCard();
         oderPage.oderConfirmationAlreadyAuth(1);
-        Assert.assertTrue(header.checkHeaderInform("order confirmation"),
-                "ожидаемое сообщение в хэдере \"order confirmation\"");
+        Assert.assertTrue(header.checkHeaderInform(oderPage.HI_ODER_CONFIRM),
+                "ожидаемое сообщение в хэдере " + oderPage.HI_ODER_CONFIRM);
     }
 
     @Test(testName = "Покупка + аутентификация")
@@ -66,13 +65,13 @@ public class BuyingTests extends BaseUITest {
         windowAddedToCart.closeWindow();
         header.goToCard();
         oderPage.proceedCheckoutSummary();
-        signInPage.authentication("dkmfjhg@nhg.iu", "123456");
+        signInPage.authentication(GenerateData.AUTH_POSITIVE1[0].toString(), GenerateData.AUTH_POSITIVE1[1].toString());
         oderPage.proceedCheckoutAddress();
         oderPage.checkboxIAgree();
         oderPage.proceedCheckoutShipping();
         oderPage.checkPayment(2);
         oderPage.confirmMyOder();
-        Assert.assertTrue(header.checkHeaderInform("order confirmation"),
-                "ожидаемое сообщение в хэдере \"order confirmation\"");
+        Assert.assertTrue(header.checkHeaderInform(oderPage.HI_ODER_CONFIRM),
+                "ожидаемое сообщение в хэдере " + oderPage.HI_ODER_CONFIRM);
     }
 }

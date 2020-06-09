@@ -12,6 +12,8 @@ public class OderPage extends BaseActions {
     private static final By PAY_BY_BANK_WIRE_BUTTON = By.cssSelector("#HOOK_PAYMENT > div:nth-child(1) > div > p > a");
     private static final By PAY_BY__BUTTON = By.cssSelector("#HOOK_PAYMENT > div:nth-child(2) > div > p > a");
     private static final By I_CONFIRM_MY_ORDER_BUTTON = By.cssSelector("#cart_navigation > button");
+    // HI = Header Inform
+    public static final String HI_ODER_CONFIRM = "order confirmation";
 
     public OderPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);

@@ -37,12 +37,22 @@ public class RegistrationPage extends BaseActions {
     private static final By FIELD_HOME_PHONE = By.cssSelector("#phone");
     private static final By FIELD_MOBILE_PHONE = By.cssSelector("#phone_mobile");
     private static final By FIELD_ADDRESS_ALIAS = By.cssSelector("#alias");
-
     private static final By REGISTER_BUTTON = By.cssSelector("#submitAccount");
-
     private static final By INFORMATION_ALERT = By.cssSelector("#center_column > div");
-
     private static final By INFORMATION_ALERT_DOWN = By.cssSelector("#account-creation_form > div.submit.clearfix > p");
+
+    public static final String DOWN_REGISTRATION_INFORM = "Required field";
+    //AI= Alert Inform
+    public static final String AI_PASSWORD_INVALID = "passwd is invalid.";
+    public static final String AI_FIRST_NAME_INVALID = "firstname is invalid.";
+    public static final String AI_LAST_NAME_INVALID = "lastname is invalid.";
+    public static final String AI_LAST_NAME_REQUIRED = "lastname is required.";
+    public static final String AI_REGISTER_PHONE = "You must register at least one phone number.";
+    public static final String AI_POST_CODE = "The Zip/Postal code you've entered is invalid. It must follow this format: 00000";
+
+
+
+
 
 
     public RegistrationPage(WebDriver driver, WebDriverWait wait) {
@@ -81,8 +91,8 @@ public class RegistrationPage extends BaseActions {
 
     public boolean checkAlertInformation(String str) {
         if ((driver.findElement(INFORMATION_ALERT).getText().contains(str)) &
-                driver.findElement(INFORMATION_ALERT_DOWN).getText().
-                        contains("Required field")) {
+                driver.findElement(INFORMATION_ALERT_DOWN).getText().toLowerCase().
+                        contains(DOWN_REGISTRATION_INFORM.toLowerCase())) {
             return true;
         }
         return false;
