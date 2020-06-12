@@ -1,25 +1,19 @@
 package automationpractice.at.zvereva;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class Header extends BaseActions{
+public class Header extends BaseActions {
 
     private static final By INFORMATION_OF_PAGE = By.cssSelector(".page-heading");
-
     private static final By SIGN_IN_BTN = By.cssSelector(".login");
     private static final By SIGN_OUT_BTN = By.cssSelector(".logout");
-
     private static final By BLOCK_TOP_MENU = By.cssSelector("#block_top_menu > ul > li");
     private static final By CARD_BUTTON = By.cssSelector("#header > div:nth-child(3) > div > div > div:nth-child(3) > div > a");
-//
-    //private static final By HEADER_INFORM_BUTTON = By.cssSelector("#center_column > h1");
 
     public Header(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -29,9 +23,11 @@ public class Header extends BaseActions{
         click(SIGN_IN_BTN);
     }
 
-    public void signOut(){click(SIGN_OUT_BTN);}
+    public void signOut() {
+        click(SIGN_OUT_BTN);
+    }
 
-    public void goToCard(){
+    public void goToCard() {
 //        WebElement element = driver.findElement(CARD_BUTTON);
 //        Actions actions = new Actions(driver);
 //        Dimension size = element.getSize();
@@ -40,9 +36,9 @@ public class Header extends BaseActions{
         click(CARD_BUTTON);
     }
 
-    public boolean checkHeaderInform(String inform){
+    public boolean checkHeaderInform(String inform) {
         waitABit(2000);
-       return driver.findElement(INFORMATION_OF_PAGE).getText().toLowerCase().contains(inform);
+        return driver.findElement(INFORMATION_OF_PAGE).getText().toLowerCase().contains(inform);
     }
 
     public void clickButtonTopMenu(СheckButton nameButton) {
@@ -62,6 +58,7 @@ public class Header extends BaseActions{
             }
         }
     }
+
     public enum СheckButton {
         women("WOMEN"),
         dresses("DRESSES"),
@@ -77,8 +74,7 @@ public class Header extends BaseActions{
         public String getText() {
             return nameButton;
         }
-        }
-
+    }
 
 
 }

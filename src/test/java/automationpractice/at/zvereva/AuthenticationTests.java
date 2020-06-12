@@ -1,39 +1,37 @@
 package automationpractice.at.zvereva;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import java.util.stream.Stream;
 
-public class AuthenticationTests extends BaseUITest{
-    @DisplayName("Аутентификация с валидными данными (позитив)")
-        @Test
-        public void positiveAuthTest() {
-            mainPage.home();
-            header.goToSignIn();
-            signInPage.authentication("vskstji@gmail.com","trre123");
-            Assertions.assertTrue(myAccountPage.checkMyAccountPageIsDisplayed(), "не все элементы MyAccount отобразились");
-        }
-    @DisplayName("Аутентификация с не валидными данными (негатив)")
-    @ParameterizedTest
-    @MethodSource("dataForNegativeAuthTest")
-    public void negativeAuthTest(String email, String password, String message)  {
+import automationpractice.at.zvereva.data.GenerateData;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+
+public class AuthenticationTests extends BaseUITest {
+
+    @DataProvider(name = "dataTest")
+    public static Object[][] dataForNegativeAuthTest() {
+        return new Object[][]{
+                {GenerateData.AUTH_NEGATIVE1[0], GenerateData.AUTH_NEGATIVE1[1], SignInPage.AUTHENTICATION_FAILED_ALERT},
+                {GenerateData.AUTH_NEGATIVE2[0], GenerateData.AUTH_NEGATIVE2[1],  SignInPage.INVALID_PASSWORD_ALERT},
+                {GenerateData.AUTH_NEGATIVE3[0], GenerateData.AUTH_NEGATIVE3[1], SignInPage.INVALID_EMAIL_ALERT}
+        };
+    }
+
+    @Test(testName = "Аутентификация с валидными данными (позитив)")
+    public void positiveAuthTest() {
         mainPage.home();
         header.goToSignIn();
-        signInPage.authentication(email,password);
-        Assertions.assertTrue(signInPage.checkDanderAuthentication().contains(message.toLowerCase()),
+        signInPage.authentication("vskstji@gmail.com", "trre123");
+        Assert.assertTrue(myAccountPage.checkMyAccountPageIsDisplayed(), "не все элементы MyAccount отобразились");
+    }
+
+    @Test(testName = "Аутентификация с не валидными данными (негатив)", dataProvider = "dataTest")
+    public void negativeAuthTest(Object email, Object password, Object message) {
+        mainPage.home();
+        header.goToSignIn();
+        signInPage.authentication(email.toString(), password.toString());
+        Assert.assertTrue(signInPage.checkDanderAuthentication().contains(message.toString().toLowerCase()),
                 "сообщение не содежит " + message);
-
     }
-
-    public static Stream<Arguments> dataForNegativeAuthTest(){
-        return Stream.of(
-                Arguments.of("vskstji@gmai.com", "123456", "authentication failed"),
-                Arguments.of("vskstji@gmai.com", "12", "invalid password"),
-                Arguments.of("gjnvd3", "123456", "email address")
-        );
-    }
-    }
+}
 

@@ -1,13 +1,8 @@
 package automationpractice.at.zvereva;
 
-import automationpractice.at.zvereva.BaseActions;
-import automationpractice.at.zvereva.data.GenerateData;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegistrationPage extends BaseActions {
 
@@ -42,12 +37,22 @@ public class RegistrationPage extends BaseActions {
     private static final By FIELD_HOME_PHONE = By.cssSelector("#phone");
     private static final By FIELD_MOBILE_PHONE = By.cssSelector("#phone_mobile");
     private static final By FIELD_ADDRESS_ALIAS = By.cssSelector("#alias");
-
     private static final By REGISTER_BUTTON = By.cssSelector("#submitAccount");
-
     private static final By INFORMATION_ALERT = By.cssSelector("#center_column > div");
-
     private static final By INFORMATION_ALERT_DOWN = By.cssSelector("#account-creation_form > div.submit.clearfix > p");
+
+    public static final String DOWN_REGISTRATION_INFORM = "Required field";
+    //AI= Alert Inform
+    public static final String AI_PASSWORD_INVALID = "passwd is invalid.";
+    public static final String AI_FIRST_NAME_INVALID = "firstname is invalid.";
+    public static final String AI_LAST_NAME_INVALID = "lastname is invalid.";
+    public static final String AI_LAST_NAME_REQUIRED = "lastname is required.";
+    public static final String AI_REGISTER_PHONE = "You must register at least one phone number.";
+    public static final String AI_POST_CODE = "The Zip/Postal code you've entered is invalid. It must follow this format: 00000";
+
+
+
+
 
 
     public RegistrationPage(WebDriver driver, WebDriverWait wait) {
@@ -66,11 +71,11 @@ public class RegistrationPage extends BaseActions {
             String postCode,
             String phone) {
         //пока так
-        if (oneOrTwo == 1){
-        click(MR_RADIO_BUTTON);}
-        else click(MRS_RADIO_BUTTON);
-        type(firstName,FIRST_NAME_CUSTOMER_FIELD);
-        type(lastName,LAST_NAME_CUSTOMER_FIELD);
+        if (oneOrTwo == 1) {
+            click(MR_RADIO_BUTTON);
+        } else click(MRS_RADIO_BUTTON);
+        type(firstName, FIRST_NAME_CUSTOMER_FIELD);
+        type(lastName, LAST_NAME_CUSTOMER_FIELD);
         type(password, PASSWORD_FIELD);
         type(address, ADDRESS1_FIELD);
         type(city, CITY_FIELD);
@@ -80,16 +85,16 @@ public class RegistrationPage extends BaseActions {
         //click(COUNTRY_FIELD);
         //click(COUNTRY_USA);
         type(postCode, POST_CODE_FIELD);
-        type(phone,FIELD_HOME_PHONE);
+        type(phone, FIELD_HOME_PHONE);
         click(REGISTER_BUTTON);
     }
 
-    public void checkAlertInformation(String str){
-        Assertions.assertAll(
-                ()-> assertTrue(driver.findElement(INFORMATION_ALERT).getText().contains(str)),
-                ()-> assertTrue(driver.findElement(INFORMATION_ALERT_DOWN).getText().contains("Required field"))
-        );
-
-
+    public boolean checkAlertInformation(String str) {
+        if ((driver.findElement(INFORMATION_ALERT).getText().contains(str)) &
+                driver.findElement(INFORMATION_ALERT_DOWN).getText().toLowerCase().
+                        contains(DOWN_REGISTRATION_INFORM.toLowerCase())) {
+            return true;
+        }
+        return false;
     }
 }

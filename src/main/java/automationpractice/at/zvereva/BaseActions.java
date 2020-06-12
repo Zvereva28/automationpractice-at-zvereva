@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,12 +20,20 @@ public abstract class BaseActions {
         this.wait = wait;
     }
 
+    public static void waitABit(int sec) {
+        try {
+            Thread.sleep(sec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void type(String text, By by) {
         if (isElementPresent(by)) {
-        WebElement element = driver.findElement(by);
-        element.clear();
-        element.sendKeys(text);}
-        else System.out.println("элемент " + by.toString() + " не найден");
+            WebElement element = driver.findElement(by);
+            element.clear();
+            element.sendKeys(text);
+        } else System.out.println("элемент " + by.toString() + " не найден");
     }
 
     public void click(By by) {
@@ -34,16 +43,8 @@ public abstract class BaseActions {
 
     public void clickElementInApt(By by, int index) {
         if (isElementPresent(by)) {
-            driver.findElements(by).get(index).click();}
-        else System.out.println("элемент " + by.toString() + " не найден ++++++++++++++++++");
-    }
-
-    public static void waitABit(int sec) {
-        try {
-            Thread.sleep(sec);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            driver.findElements(by).get(index).click();
+        } else System.out.println("элемент " + by.toString() + " не найден ++++++++++++++++++");
     }
 
     public boolean isElementPresent(By by) {
@@ -55,8 +56,9 @@ public abstract class BaseActions {
             return false;
         }
     }
+
     public List<WebElement> findElements(By by) {
-            return driver.findElements(by);
+        return driver.findElements(by);
     }
 
     //Для работы с выпадающими списками
@@ -65,8 +67,9 @@ public abstract class BaseActions {
         Select select = new Select(driver.findElement(by));
         select.selectByIndex(index);
     }
-    public void scrollPage600(){
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+
+    public void scrollPage600() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0, 600)");
     }
 }
